@@ -1,26 +1,39 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.scss'
+import axios from 'axios'
+import { getEmployeesEndpoint } from './utils/endpoints'
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            employees: []
+        }
+    }
 
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Probando circle ci
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                Hello World! Topografi App
-                </a>
-            </header>
-        </div>
-    )
+    getEmployees = async () => {
+        const employees = await axios.get(getEmployeesEndpoint)
+        console.log(employees.data)
+        this.setState({ employees: employees.data })
+    }
+
+    componentDidMount = () => {
+        this.getEmployees()
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    {this.state.employees ?
+                        this.state.employees.map((employee, index)=>
+                            <p key={index}>{employee.user.username}</p>
+                        )
+                        : <p>Cargando...</p>
+                    }
+                </header>
+            </div>
+        )
+    }
 }
 
 export default App
