@@ -28,7 +28,7 @@ class App extends React.Component {
                         this.state.employees.map((employee, index)=>
                             <p key={index}>{employee.user.username}</p>
                         )
-                        : <p>Cargando...</p>
+                        : <p>Loading</p>
                     }
                 </header>
             </div>
