@@ -1,39 +1,30 @@
-import React from 'react'
+import React, { Component, Fragment } from 'react'
+import { Switch, Route } from 'react-router-dom'
 import './App.scss'
-import axios from 'axios'
-import { getEmployeesEndpoint } from './utils/endpoints'
-class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            employees: []
-        }
-    }
+import 'antd/dist/antd.css'
+import Login from './components/authentication/login'
+import Change from './components/authentication/changePassword'
+import Confirm from './components/authentication/comfirmChange'
+import Reset from './components/authentication/resetPassword'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-    getEmployees = async () => {
-        const employees = await axios.get(getEmployeesEndpoint)
-        console.log(employees.data)
-        this.setState({ employees: employees.data })
-    }
+class App extends Component{
 
-    componentDidMount = () => {
-        this.getEmployees()
-    }
-
-    render() {
-        return (
-            <div className="App">
-                <header className="App-header">
-                    {this.state.employees ?
-                        this.state.employees.map((employee, index)=>
-                            <p key={index}>{employee.user.username}</p>
-                        )
-                        : <p>Cargando...</p>
-                    }
-                </header>
-            </div>
+    render(){
+        return(
+            <Fragment>
+                <ToastContainer />
+                <Switch>
+                <Route exact path="/" component={Login} />
+                <Route exact path="/recuperar-contraseña/" component={Change} />
+                <Route exact path="/confirmacion/" component={Confirm} />
+                <Route exact path="/reset/" component={Reset} />
+                </Switch>
+            </Fragment>
         )
     }
+
 }
 
 export default App

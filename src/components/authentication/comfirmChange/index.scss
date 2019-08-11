@@ -1,0 +1,48 @@
+@import '../../../variables.scss';
+
+.confirm-ui-container{
+    height: 100vh;
+    max-width: 100vh;
+    width: 100vw;
+    max-width: 100vw;
+    background-color: $primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .confirm-ui-space{
+        background-color: #fff;
+        width: 40vw;
+        height: 60vh;
+        border-radius: 1vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-box-shadow: -17px 24px 5px 0px rgba(0,0,0,0.33);
+        -moz-box-shadow: -17px 24px 5px 0px rgba(0,0,0,0.33);
+        box-shadow: -17px 24px 5px 0px rgba(0,0,0,0.33);
+    }
+}
+.confirm-ui-form{
+    width: 30vw;
+}
+.confirm-ui-text{
+    display: block;
+    font-weight: bold;
+    font-size: 4vh;
+    color: #000000;
+    text-align: center;
+}
+@media screen and (max-width: 768px) {
+    .confirm-ui-space{
+        width: 70vw !important;
+        height: 70vh !important;
+    }
+    .confirm-ui-form{
+        width: 50vw;
+    }
+    .confirm-ui-text{
+        font-size: 3vh;
+    }
+    
+}
